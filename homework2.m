@@ -32,7 +32,7 @@ lmiterm([1 1 1 Y1], -B1, 1, 's')    % -B1*Y1 - Y1'*B1'
 lmiterm([2 1 1 X], A2, 1, 's')      % A2*X + X*A2'
 lmiterm([2 1 1 Y1], -B2, 1, 's')    % -B2*Y1 - Y1'*B2'
 % LMI condition 3
-lmiterm([3 1 1 X], A1, 1, 's')      % A1*X + X*A1'
+lmiterm([3 1 1 X], A2, 1, 's')      % A1*X + X*A1'
 lmiterm([3 1 1 Y2], -B1, 1, 's')    % -B1*Y2 - Y2'*B1'
 % LMI condition 4
 lmiterm([4 1 1 X], A2, 1, 's')      % A2*X + X*A2'
@@ -54,5 +54,26 @@ F1 = Ys1 * inv(Xs);
 F2 = Ys2 * inv(Xs);
 P = inv(Xs);
 
-Initial_angle1 = 45;
-Initial_angle2 = 30;
+x = [90 60 0 0]';
+u = 0;
+for i=1:899  
+    % model
+    ddot_x3=(k*(x(2)-x(1))-m*g*L*sind(x(1)))/I;
+    
+    ddot_x4=(u-k*(x(2)-x(1)))/J;
+    
+    x(3) = ddot_x3;
+    x(1) = x(3)*0.01-180;
+    
+    x(4) = ddot_x4;
+    x(2) = x(4)*0.01-180;
+    
+    % controller
+    u = -sind(x(1))/x(1)*(F1*x)-(x(1)-sind(x(1)))/x(1)*(F2*x);    
+    check_input(:,i) = u;
+    check_state(:,i) = x;
+    
+end
+
+Initial_angle1 = 90;
+Initial_angle2 = 60;
