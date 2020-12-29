@@ -21,15 +21,15 @@ T-S model by MATLAB
 ![image](https://user-images.githubusercontent.com/42115807/103292357-f557f500-4a30-11eb-8c89-d43f758e87b0.png)
 
 # Matlab code
-- You need to install LMI toolbox.<br>
+##### You need to install LMI toolbox.<br>
 <br>
-parameter<br>
+- parameter<br>
 
     k = 100; g = 9.8; I = 1; J=1; m=1; L=1;
     b1=1; b2=0;
 
 <br>
-LMI setting<br>
+- LMI setting<br>
 
     setlmis([])
 
@@ -67,7 +67,7 @@ LMI setting<br>
     F2 = Ys2 * inv(Xs);
     P = inv(Xs);
 
-Initial condition<br>
+- Initial condition<br>
 
     Initial_angle1 = 90;
     Initial_angle2 = 60;
