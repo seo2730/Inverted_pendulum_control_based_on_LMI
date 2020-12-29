@@ -23,12 +23,14 @@ T-S model by MATLAB
 # Matlab code
 ##### You need to install LMI toolbox.<br>
 <br>
+
 - parameter<br>
 
     k = 100; g = 9.8; I = 1; J=1; m=1; L=1;
     b1=1; b2=0;
 
 <br>
+
 - LMI setting<br>
 
     setlmis([])
@@ -69,8 +71,8 @@ T-S model by MATLAB
 
 - Initial condition<br>
 
-    Initial_angle1 = 90;
-    Initial_angle2 = 60;
+      Initial_angle1 = 90;
+      Initial_angle2 = 60;
 
 # Simulink
 Block diagram<br>
