@@ -7,12 +7,16 @@ T-S model by MATLAB
 # State-space Equation
 ![image](https://user-images.githubusercontent.com/42115807/103292068-76fb5300-4a30-11eb-9067-08c0d9824b1e.png)<br>
 
-x ̇_1 (t) = x_3(t)
-x ̇_2 (t) = x_4(t)
-x ̇_3 (t) = (k(x_2(t) - x_1(t)) – mgLsin(x_1(t))) / I
-x ̇_4 (t) = (u(t) – k(x_2(t)- x_1(t))) / J
-
-
 # Fuzzy variable
 ![image](https://user-images.githubusercontent.com/42115807/103292119-8aa6b980-4a30-11eb-8886-e78d8b674ee7.png)
+
+# Membership functions
+![image](https://user-images.githubusercontent.com/42115807/103292201-b4f87700-4a30-11eb-998e-62f7c3dde737.png)
+
+# Fuzzy Rules
+#### Rule 1
+![image](https://user-images.githubusercontent.com/42115807/103292324-e8d39c80-4a30-11eb-97b1-5be7339e9e29.png)
+
+#### Rule 2
+![image](https://user-images.githubusercontent.com/42115807/103292357-f557f500-4a30-11eb-8c89-d43f758e87b0.png)
 
