@@ -1,4 +1,4 @@
-# LMI_example_code
+# Inverted pendulum control based on LMI
 T-S model by MATLAB
 
 # Model
@@ -20,3 +20,5 @@ T-S model by MATLAB
 #### Rule 2
 ![image](https://user-images.githubusercontent.com/42115807/103292357-f557f500-4a30-11eb-8c89-d43f758e87b0.png)
 
+# Simulink
+![image](https://user-images.githubusercontent.com/42115807/103292510-4536bc00-4a31-11eb-8448-40ff1cc22820.png)
