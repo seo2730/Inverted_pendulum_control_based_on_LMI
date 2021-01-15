@@ -54,26 +54,49 @@ F1 = Ys1 * inv(Xs);
 F2 = Ys2 * inv(Xs);
 P = inv(Xs);
 
-x = [90 60 0 0]';
-u = 0;
-for i=1:899  
-    % model
-    ddot_x3=(k*(x(2)-x(1))-m*g*L*sind(x(1)))/I;
-    
-    ddot_x4=(u-k*(x(2)-x(1)))/J;
-    
-    x(3) = ddot_x3;
-    x(1) = x(3)*0.01-180;
-    
-    x(4) = ddot_x4;
-    x(2) = x(4)*0.01-180;
-    
-    % controller
-    u = -sind(x(1))/x(1)*(F1*x)-(x(1)-sind(x(1)))/x(1)*(F2*x);    
-    check_input(:,i) = u;
-    check_state(:,i) = x;
+Initial_angle1 = 90;
+Initial_angle2 = 60;
+
+%% Fuzzy controller in MATLAB code
+dt = 0.01;
+input = [180 160 0 0]';
+
+t = 0:dt:10;
+Xsaved = zeros(4,1001);
+for i=1:size(t,2)
+    if i==1
+        % Controller
+        x = [Initial_angle1 Initial_angle2 0 0]';
+        Xsaved(:,i) = x;
+        e = x - input;
+        h1F1 = -sind(e(1))/e(1)*(F1*e);
+        h2F2 = -(e(1)-sind(e(1)))/e(1)*(F2*e);
+        
+        % Model
+        u = h1F1+h2F2;
+        x(3) = x(3) + (k*(x(2)-x(1))-m*g*L*sin(x(1)))/I*dt;
+        x(4) = x(4) + (u-k*(x(2)-x(1)))/J*dt;
+        x(1) = x(1) + x(3)*dt;
+        x(2) = x(2) + x(4)*dt;
+        
+    else
+        Xsaved(:,i) = x;
+        e = x - input;
+        h1F1 = -sind(e(1))/e(1)*(F1*e);
+        h2F2 = -(e(1)-sind(e(1)))/e(1)*(F2*e);
+        
+        % Model
+        u = h1F1+h2F2;
+        x(3) = x(3) + (k*(x(2)-x(1))-m*g*L*sin(x(1)))/I*dt;
+        x(4) = x(4) + (u-k*(x(2)-x(1)))/J*dt;
+        x(1) = x(1) + x(3)*dt;
+        x(2) = x(2) + x(4)*dt;
+    end
     
 end
 
-Initial_angle1 = 90;
-Initial_angle2 = 60;
+figure(1)
+plot(t,Xsaved(1,:))
+hold on
+plot(t,Xsaved(2,:))
+hold off
