@@ -59,7 +59,7 @@ Initial_angle2 = 60;
 
 %% Fuzzy controller in MATLAB code
 dt = 0.01;
-input = [180 160 0 0]';
+input = [0 0 0 0]';
 
 t = 0:dt:10;
 Xsaved = zeros(4,1001);
