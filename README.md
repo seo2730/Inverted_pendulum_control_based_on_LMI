@@ -85,5 +85,49 @@ Fuzzy controller<br>
 Fuzzy model<br>
 ![image](https://user-images.githubusercontent.com/42115807/103293319-fab63f00-4a32-11eb-9f86-43aae1490fc2.png)<br>
 <br>
+
+# MATLAB code
+
+    dt = 0.01;
+    input = [180 180 0 0]';
+
+    t = 0:dt:10;
+    Xsaved = zeros(4,1001);
+    for i=1:size(t,2)
+        if i==1
+            % Controller
+            x = [Initial_angle1 Initial_angle2 0 0]';
+            Xsaved(:,i) = x;
+            e = x - input;
+            h1F1 = -sind(e(1))/e(1)*(F1*e);
+            h2F2 = -(e(1)-sind(e(1)))/e(1)*(F2*e);
+        
+            % Model
+            u = h1F1+h2F2;
+            x(3) = x(3) + (k*(x(2)-x(1))-m*g*L*sin(x(1)))/I*dt;
+            x(4) = x(4) + (u-k*(x(2)-x(1)))/J*dt;
+            x(1) = x(1) + x(3)*dt;
+            x(2) = x(2) + x(4)*dt;
+        
+        else
+            Xsaved(:,i) = x;
+            e = x - input;
+            h1F1 = -sind(e(1))/e(1)*(F1*e);
+            h2F2 = -(e(1)-sind(e(1)))/e(1)*(F2*e);
+        
+            % Model
+            u = h1F1+h2F2;
+            x(3) = x(3) + (k*(x(2)-x(1))-m*g*L*sin(x(1)))/I*dt;
+            x(4) = x(4) + (u-k*(x(2)-x(1)))/J*dt;
+            x(1) = x(1) + x(3)*dt;
+            x(2) = x(2) + x(4)*dt;
+        end
+    
+    end
+
 # Result
+### Simulink
 ![image](https://user-images.githubusercontent.com/42115807/103292936-3ac8f200-4a32-11eb-9439-d09ec1fc9098.png)
+
+### MATLAB
+![image](https://user-images.githubusercontent.com/42115807/104813337-e56f4c00-584b-11eb-8f18-175150bf1bae.png)
