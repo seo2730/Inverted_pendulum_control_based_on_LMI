@@ -32,7 +32,7 @@ lmiterm([1 1 1 Y1], -B1, 1, 's')    % -B1*Y1 - Y1'*B1'
 lmiterm([2 1 1 X], A2, 1, 's')      % A2*X + X*A2'
 lmiterm([2 1 1 Y1], -B2, 1, 's')    % -B2*Y1 - Y1'*B2'
 % LMI condition 3
-lmiterm([3 1 1 X], A2, 1, 's')      % A1*X + X*A1'
+lmiterm([3 1 1 X], A1, 1, 's')      % A1*X + X*A1'
 lmiterm([3 1 1 Y2], -B1, 1, 's')    % -B1*Y2 - Y2'*B1'
 % LMI condition 4
 lmiterm([4 1 1 X], A2, 1, 's')      % A2*X + X*A2'
